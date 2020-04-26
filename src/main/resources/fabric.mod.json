@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "gldebug",
+  "version": "${version}",
+
+  "name": "glDebug",
+  "description": "Contains helpers for annotating OpenGL calls during trace recording",
+  "authors": [
+    "Ancurio"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Sturmlilie/gldebug",
+    "sources": "https://github.com/Sturmlilie/gldebug"
+  },
+
+  "license": "LGPLv3",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ancurio.gldebug.GLDebug"
+    ]
+  },
+  "mixins": [
+    "gldebug.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.15.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

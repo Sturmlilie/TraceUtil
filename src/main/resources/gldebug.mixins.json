@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.ancurio.gldebug.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "MixinVertexConsumerProviderImmediate",
+    "MixinMinecraftClient",
+    "MixinTextureUtil",
+    "MixinNativeImage",
+    "MixinModelLoader",
+    "MixinBufferRenderer",
+    "MixinDrawableHelper",
+    "MixinLevelLoadingScreen",
+    "MixinGameRenderer",
+    "MixinWorldRenderer",
+    "MixinSpriteAtlasTexture",
+    "MixinTextureManager",
+    "MixinDiffuseLighting",
+    "MixinScreen",
+    "MixinItemRenderer",
+    "MixinDisableableProfiler"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
