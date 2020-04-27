@@ -1,4 +1,6 @@
 # glDebug
+glDebug is a fabric mod/library aimed at developers.
+
 Setting up apitrace with MultiMC: [Tutorial](https://gist.github.com/Sturmlilie/69d6c4d2dce9d648cd706093c95ba195)
 ## As a stand-alone mod
 glDebug contains common annotation for OpenGL-intensive methods in Minecraft 1.15.2 which are automatically inserted via mixin-hooks, including:  
