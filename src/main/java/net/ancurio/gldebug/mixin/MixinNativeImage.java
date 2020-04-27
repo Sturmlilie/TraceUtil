@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinNativeImage {
 	@Inject(at = @At("HEAD"), method = "upload(IIIIIIIZZZZ)V")
 	private void uploadBegin(CallbackInfo info) {
-		Annotations.onNativeImageUploadBegin();
+		Annotations.onBegin("NativeImage.upload");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "upload(IIIIIIIZZZZ)V")
 	private void uploadEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();

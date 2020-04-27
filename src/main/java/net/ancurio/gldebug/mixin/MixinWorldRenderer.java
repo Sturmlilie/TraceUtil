@@ -15,27 +15,27 @@ public class MixinWorldRenderer {
 	private void renderLayerBegin(final RenderLayer layer, final MatrixStack matrices, double d, double e, double f, CallbackInfo info) {
 		Annotations.onRenderLayerDrawBegin(layer);
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "renderLayer(Lnet/minecraft/client/render/RenderLayer;Lnet/minecraft/client/util/math/MatrixStack;DDD)V")
 	private void renderLayerEnd(CallbackInfo info) {
 		Annotations.onRenderLayerDrawEnd();
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/client/util/math/Matrix4f;)V")
 	private void renderBegin(CallbackInfo info) {
-		Annotations.onWorldRendererReloadBegin();
+		Annotations.onBegin("WorldRenderer.render");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/client/util/math/Matrix4f;)V")
 	private void renderEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "reload()V")
 	private void reloadBegin(CallbackInfo info) {
-		Annotations.onWorldRendererReloadBegin();
+		Annotations.onBegin("WorldRenderer.reload");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "reload()V")
 	private void reloadEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();

@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinTextureUtil {
 	@Inject(at = @At("HEAD"), method = "prepareImage(Lnet/minecraft/client/texture/NativeImage$GLFormat;IIII)V")
 	private static void prepareImageBegin(CallbackInfo info) {
-		Annotations.onTextureUtilPrepareImageBegin();
+		Annotations.onBegin("TextureUtil.prepareImage");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "prepareImage(Lnet/minecraft/client/texture/NativeImage$GLFormat;IIII)V")
 	private static void drawEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();

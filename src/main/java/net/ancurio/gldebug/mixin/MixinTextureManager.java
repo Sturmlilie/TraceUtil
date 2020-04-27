@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinTextureManager {
 	@Inject(at = @At("HEAD"), method = "tick()V")
 	private void tickBegin(CallbackInfo info) {
-		Annotations.onTextureManagerTickBegin();
+		Annotations.onBegin("TextureManager.tick");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "tick()V")
 	private void tickEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();

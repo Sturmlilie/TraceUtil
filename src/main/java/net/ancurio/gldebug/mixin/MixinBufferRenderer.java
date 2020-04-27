@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinBufferRenderer {
 	@Inject(at = @At("HEAD"), method = "draw(Ljava/nio/ByteBuffer;ILnet/minecraft/client/render/VertexFormat;I)V")
 	private static void drawBegin(CallbackInfo info) {
-		Annotations.onBufferRendererDrawBegin();
+		Annotations.onBegin("BufferRenderer.draw");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "draw(Ljava/nio/ByteBuffer;ILnet/minecraft/client/render/VertexFormat;I)V")
 	private static void drawEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();

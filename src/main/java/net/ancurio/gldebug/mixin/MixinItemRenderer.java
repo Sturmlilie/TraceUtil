@@ -11,19 +11,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinItemRenderer {
 	@Inject(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
 	private void renderItemBegin(CallbackInfo info) {
-		Annotations.onItemRendererRenderItemBegin();
+		Annotations.onBegin("ItemRenderer.renderItem");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
 	private void renderItemEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "renderGuiItemModel(Lnet/minecraft/item/ItemStack;IILnet/minecraft/client/render/model/BakedModel;)V")
 	private void renderGuiItemModelBegin(CallbackInfo info) {
-		Annotations.onItemRendererRenderGuiItemModelBegin();
+		Annotations.onBegin("ItemRenderer.renderGuiItemModel");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "renderGuiItemModel(Lnet/minecraft/item/ItemStack;IILnet/minecraft/client/render/model/BakedModel;)V")
 	private void renderGuiItemModelEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();

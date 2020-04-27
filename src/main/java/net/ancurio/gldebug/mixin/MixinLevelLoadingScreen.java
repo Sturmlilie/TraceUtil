@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinLevelLoadingScreen {
 	@Inject(at = @At("HEAD"), method = "render(IIF)V")
 	private void renderBegin(CallbackInfo info) {
-		Annotations.onLevelLoadingScreenRenderBegin();
+		Annotations.onBegin("LevelLoadingScreen.render");
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "render(IIF)V")
 	private void renderEnd(CallbackInfo info) {
 		Annotations.onGenericEnd();
