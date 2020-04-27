@@ -6,10 +6,10 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.profiler.Profiler;
 
 public class Annotations {
-	private static Annotations INSTANCE = null;
-	private static String NAMESPACE = "minecraft";
+	private static Annotations INSTANCE;
+	private final static String NAMESPACE = "minecraft";
 
-	public static Profiler clientProfiler = null;
+	public static Profiler clientProfiler;
 
 	/* Generic scope annotation spanning an entire method */
 	private Annotater methodTater = new DummyAnnotater();
