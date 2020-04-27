@@ -9,13 +9,7 @@ public class Annotations {
 	private static Annotations INSTANCE = null;
 	private static String NAMESPACE = "minecraft";
 
-	public static void init() {
-		INSTANCE = new Annotations();
-	}
-
-	private static boolean isInitialized() {
-		return INSTANCE != null;
-	}
+	public static Profiler clientProfiler = null;
 
 	/* Generic scope annotation spanning an entire method */
 	private Annotater methodTater = new DummyAnnotater();
@@ -23,34 +17,30 @@ public class Annotations {
 	private Annotater layerTater = new DummyAnnotater();
 	/* Scope annotation piggybacking Minecraft's native profiler */
 	private Annotater profilerTater = new DummyAnnotater();
-	public static Profiler clientProfiler = null;
 
-	private Annotations() {
-		methodTater = Annotater.chooseImpl(NAMESPACE, Annotater.ThreadAwareness.IGNORANT);
-		layerTater = Annotater.chooseImpl(NAMESPACE, Annotater.ThreadAwareness.IGNORANT);
-//		profilerTater = Annotater.chooseImpl(NAMESPACE, Annotater.ThreadAwareness.AWARE);
-
-		layerTater.appendPrefix("layer");
-		profilerTater.appendPrefix("profiler");
+	public static void init() {
+		INSTANCE = new Annotations();
 	}
 
+	public static void initAfterGLContextValid() {
+		INSTANCE.methodTater = Annotater.chooseImpl(NAMESPACE);
+		INSTANCE.layerTater = Annotater.chooseImpl(NAMESPACE);
+//		INSTANCE.profilerTater = Annotater.chooseImpl(NAMESPACE, Annotater.ThreadAwareness.AWARE);
+
+		INSTANCE.layerTater.appendPrefix("layer");
+		INSTANCE.profilerTater.appendPrefix("profiler");
+	}
 
 	public static void onBegin(String scope) {
-		if (isInitialized()) {
-			INSTANCE.methodTater.push(scope);
-		}
+		INSTANCE.methodTater.push(scope);
 	}
 
 	public static void onGenericEnd() {
-		if (isInitialized()) {
-			INSTANCE.methodTater.pop();
-		}
+		INSTANCE.methodTater.pop();
 	}
 
 	public static void onRenderLayerDrawBegin(final RenderLayer layer) {
-		if (isInitialized()) {
-			INSTANCE.layerTater.push(layer.toString());
-		}
+		INSTANCE.layerTater.push(layer.toString());
 	}
 
 	public static void onRenderLayerDrawEnd() {
@@ -58,20 +48,14 @@ public class Annotations {
 	}
 
 	public static void onProfilerPush(String location) {
-		if (isInitialized()) {
-			INSTANCE.profilerTater.push(location);
-		}
+		INSTANCE.profilerTater.push(location);
 	}
 
 	public static void onProfilerPop() {
-		if (isInitialized()) {
-			INSTANCE.profilerTater.pop();
-		}
+		INSTANCE.profilerTater.pop();
 	}
 
 	public static void onProfilerSwap(String location) {
-		if (isInitialized()) {
-			INSTANCE.profilerTater.swap(location);
-		}
+		INSTANCE.profilerTater.swap(location);
 	}
 }

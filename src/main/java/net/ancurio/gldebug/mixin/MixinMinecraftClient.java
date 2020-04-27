@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMinecraftClient {
 	@Shadow
 	private DisableableProfiler profiler;
-	
+
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/client/RunArgs;)V")
 	private void onClientInitialized(CallbackInfo info) {
 		Annotations.clientProfiler = profiler;
 		// Any point where a GL context is already created (but before acutal rendering) is fine
-		Annotations.init();
+		Annotations.initAfterGLContextValid();
 		System.out.println("GLDebug: MC annotations initialized");
 	}
 }
