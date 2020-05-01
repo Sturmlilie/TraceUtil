@@ -10,7 +10,7 @@ public class GLDebug implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 
 	public static void log(String str) {
-		LOGGER.info("[glDebug] " + str);
+		LOGGER.info("[{}] {}", MODID, str);
 	}
 
 	@Override
