@@ -21,6 +21,7 @@
     "MixinDiffuseLighting",
     "MixinScreen",
     "MixinItemRenderer",
+    "MixinGlStateManager",
     "MixinDisableableProfiler"
   ],
   "injectors": {
