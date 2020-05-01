@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.ancurio.gldebug.GLDebug"
+      "net.ancurio.gldebug.Main"
     ]
   },
   "mixins": [
