@@ -32,4 +32,8 @@ public class GLAnnotater extends AbstractAnnotater {
 	public void insert(String message) {
 		KHRDebug.glDebugMessageInsert(SOURCE, TYPE, ID, SEVERITY, prefix(message));
 	}
+
+	public static String extensionString() {
+		return "KHR_debug";
+	}
 }

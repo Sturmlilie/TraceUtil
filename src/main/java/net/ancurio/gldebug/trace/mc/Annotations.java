@@ -1,5 +1,6 @@
 package net.ancurio.gldebug.trace.mc;
 
+import net.ancurio.gldebug.Main;
 import net.ancurio.gldebug.trace.Annotater;
 import net.ancurio.gldebug.trace.DummyAnnotater;
 import net.minecraft.client.render.RenderLayer;
@@ -29,6 +30,14 @@ public class Annotations {
 
 		INSTANCE.layerTater.appendPrefix("layer");
 		INSTANCE.profilerTater.appendPrefix("profiler");
+
+		String ext = Annotater.supportedImplExt();
+
+		if (!ext.isEmpty()) {
+			Main.log(ext + " found, starting annotations");
+		} else {
+			Main.log("No debug extensions found");
+		}
 	}
 
 	public static void onBegin(String scope) {

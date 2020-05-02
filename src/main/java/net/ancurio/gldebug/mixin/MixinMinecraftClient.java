@@ -1,6 +1,5 @@
 package net.ancurio.gldebug.mixin;
 
-import net.ancurio.gldebug.Main;
 import net.ancurio.gldebug.trace.mc.Annotations;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.profiler.DisableableProfiler;
@@ -20,6 +19,5 @@ public class MixinMinecraftClient {
 		Annotations.clientProfiler = profiler;
 		// Any point where a GL context is already created (but before acutal rendering) is fine
 		Annotations.initAfterGLContextValid();
-		Main.log("GL context valid, starting annotations");
 	}
 }

@@ -30,4 +30,12 @@ public interface Annotater {
 			return new DummyAnnotater();
 		}
 	}
+
+	static String supportedImplExt() {
+		if (GLAnnotater.isAvailable()) {
+			return GLAnnotater.extensionString();
+		} else {
+			return "";
+		}
+	}
 }
