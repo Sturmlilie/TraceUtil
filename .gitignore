@@ -24,6 +24,9 @@ bin/
 .classpath
 .project
 
+# geany
+*.geany
+
 # fabric
 
 run/
