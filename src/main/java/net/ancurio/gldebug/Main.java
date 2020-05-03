@@ -1,6 +1,6 @@
 package net.ancurio.gldebug;
 
-import net.ancurio.gldebug.trace.mc.Annotations;
+import net.ancurio.gldebug.trace.MCAnnotations;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		Annotations.init();
+		MCAnnotations.init();
 		log("Initialized");
 	}
 }

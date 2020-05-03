@@ -1,6 +1,6 @@
 package net.ancurio.gldebug.mixin;
 
-import net.ancurio.gldebug.trace.mc.Annotations;
+import net.ancurio.gldebug.trace.MCAnnotations;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.profiler.DisableableProfiler;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,8 +16,8 @@ public class MixinMinecraftClient {
 
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/client/RunArgs;)V")
 	private void onClientInitialized(CallbackInfo info) {
-		Annotations.clientProfiler = profiler;
+		MCAnnotations.clientProfiler = profiler;
 		// Any point where a GL context is already created (but before acutal rendering) is fine
-		Annotations.initAfterGLContextValid();
+		MCAnnotations.initAfterGLContextValid();
 	}
 }

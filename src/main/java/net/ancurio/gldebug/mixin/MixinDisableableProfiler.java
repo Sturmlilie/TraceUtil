@@ -1,6 +1,6 @@
 package net.ancurio.gldebug.mixin;
 
-import net.ancurio.gldebug.trace.mc.Annotations;
+import net.ancurio.gldebug.trace.MCAnnotations;
 import java.util.function.Supplier;
 import net.minecraft.util.profiler.DisableableProfiler;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,36 +12,36 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinDisableableProfiler {
 	@Inject(at = @At("HEAD"), method = "push(Ljava/lang/String;)V")
 	private void push(String location, CallbackInfo info) {
-		if (this == Annotations.clientProfiler) {
-			Annotations.onProfilerPush(location);
+		if (this == MCAnnotations.clientProfiler) {
+			MCAnnotations.onProfilerPush(location);
 		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "push(Ljava/util/function/Supplier;)V")
 	private void push(Supplier<String> supplier, CallbackInfo info) {
-		if (this == Annotations.clientProfiler) {
-			Annotations.onProfilerPush((String) supplier.get());
+		if (this == MCAnnotations.clientProfiler) {
+			MCAnnotations.onProfilerPush((String) supplier.get());
 		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "pop()V")
 	private void pop(CallbackInfo info) {
-		if (this == Annotations.clientProfiler) {
-			Annotations.onProfilerPop();
+		if (this == MCAnnotations.clientProfiler) {
+			MCAnnotations.onProfilerPop();
 		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "swap(Ljava/lang/String;)V")
 	private void pop(String location, CallbackInfo info) {
-		if (this == Annotations.clientProfiler) {
-			Annotations.onProfilerSwap(location);
+		if (this == MCAnnotations.clientProfiler) {
+			MCAnnotations.onProfilerSwap(location);
 		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "swap(Ljava/util/function/Supplier;)V")
 	private void pop(Supplier<String> supplier, CallbackInfo info) {
-		if (this == Annotations.clientProfiler) {
-			Annotations.onProfilerSwap((String) supplier.get());
+		if (this == MCAnnotations.clientProfiler) {
+			MCAnnotations.onProfilerSwap((String) supplier.get());
 		}
 	}
 }

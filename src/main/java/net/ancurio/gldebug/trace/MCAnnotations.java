@@ -1,4 +1,4 @@
-package net.ancurio.gldebug.trace.mc;
+package net.ancurio.gldebug.trace;
 
 import net.ancurio.gldebug.Main;
 import net.ancurio.gldebug.trace.Annotater;
@@ -6,8 +6,8 @@ import net.ancurio.gldebug.trace.DummyAnnotater;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.profiler.Profiler;
 
-public class Annotations {
-	private static Annotations INSTANCE;
+public class MCAnnotations {
+	private static MCAnnotations INSTANCE;
 	private final static String NAMESPACE = "minecraft";
 
 	public static Profiler clientProfiler;
@@ -20,7 +20,7 @@ public class Annotations {
 	private Annotater profilerTater = new DummyAnnotater();
 
 	public static void init() {
-		INSTANCE = new Annotations();
+		INSTANCE = new MCAnnotations();
 	}
 
 	public static void initAfterGLContextValid() {
