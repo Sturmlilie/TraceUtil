@@ -1,6 +1,6 @@
-package net.ancurio.gldebug.mixin;
+package ancurio.traceutil.mixin;
 
-import net.ancurio.gldebug.trace.MCAnnotations;
+import ancurio.traceutil.trace.MCAnnotations;
 import net.minecraft.client.render.model.ModelLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

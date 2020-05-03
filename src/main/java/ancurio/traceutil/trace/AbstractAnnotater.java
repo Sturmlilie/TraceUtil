@@ -1,4 +1,4 @@
-package net.ancurio.gldebug.trace;
+package ancurio.traceutil.trace;
 
 // Some basic sanity is nice
 public abstract class AbstractAnnotater implements Annotater {

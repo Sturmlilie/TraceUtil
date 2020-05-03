@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "gldebug",
+  "id": "traceutil",
   "version": "${version}",
 
-  "name": "glDebug",
+  "name": "TraceUtil",
   "description": "Contains helpers for annotating OpenGL calls during trace recording",
   "authors": [
     "Ancurio"
   ],
   "contact": {
-    "homepage": "https://github.com/Sturmlilie/gldebug",
-    "sources": "https://github.com/Sturmlilie/gldebug"
+    "homepage": "https://github.com/Sturmlilie/traceutil",
+    "sources": "https://github.com/Sturmlilie/traceutil"
   },
 
   "license": "LGPLv3",
-  "icon": "assets/gldebug/icon.png",
+  "icon": "assets/traceutil/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.ancurio.gldebug.Main"
+      "ancurio.traceutil.Main"
     ]
   },
   "mixins": [
-    "gldebug.mixins.json"
+    "traceutil.mixins.json"
   ],
 
   "depends": {

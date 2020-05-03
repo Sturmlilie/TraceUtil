@@ -1,4 +1,4 @@
-package net.ancurio.gldebug.trace;
+package ancurio.traceutil.trace;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import org.lwjgl.opengl.GL;

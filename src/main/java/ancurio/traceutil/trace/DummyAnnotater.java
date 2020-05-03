@@ -1,4 +1,4 @@
-package net.ancurio.gldebug.trace;
+package ancurio.traceutil.trace;
 
 public class DummyAnnotater implements Annotater {
 	public static boolean isAvailable() {

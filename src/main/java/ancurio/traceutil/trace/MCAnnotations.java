@@ -1,8 +1,8 @@
-package net.ancurio.gldebug.trace;
+package ancurio.traceutil.trace;
 
-import net.ancurio.gldebug.Main;
-import net.ancurio.gldebug.trace.Annotater;
-import net.ancurio.gldebug.trace.DummyAnnotater;
+import ancurio.traceutil.Main;
+import ancurio.traceutil.trace.Annotater;
+import ancurio.traceutil.trace.DummyAnnotater;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.profiler.Profiler;
 

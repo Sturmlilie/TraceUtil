@@ -1,7 +1,7 @@
-package net.ancurio.gldebug.mixin;
+package ancurio.traceutil.mixin;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import net.ancurio.gldebug.trace.MCAnnotations;
+import ancurio.traceutil.trace.MCAnnotations;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

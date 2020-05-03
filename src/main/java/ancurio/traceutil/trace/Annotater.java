@@ -1,4 +1,4 @@
-package net.ancurio.gldebug.trace;
+package ancurio.traceutil.trace;
 
 public interface Annotater {
 	void appendPrefix(String prefix);

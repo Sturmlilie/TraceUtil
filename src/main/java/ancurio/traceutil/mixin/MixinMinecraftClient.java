@@ -1,6 +1,6 @@
-package net.ancurio.gldebug.mixin;
+package ancurio.traceutil.mixin;
 
-import net.ancurio.gldebug.trace.MCAnnotations;
+import ancurio.traceutil.trace.MCAnnotations;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.profiler.DisableableProfiler;
 import org.spongepowered.asm.mixin.Mixin;
