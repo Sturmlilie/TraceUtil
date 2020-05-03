@@ -16,7 +16,7 @@ Also contains a special annotater for `RenderLayer` instances, and an optional a
 Insert your own structuring annotations. Sample:
 ```java
 /* imports ... */
-import net.ancurio.traceutil.trace.Annotater;
+import net.ancurio.traceutil.anno.Annotater;
 /* constructors ... */
 Annotater tater = Annotater.chooseImpl("tis3d");
 tater.appendPrefix("serialport");
