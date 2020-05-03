@@ -1,4 +1,4 @@
-package ancurio.traceutil.trace;
+package ancurio.traceutil.anno;
 
 public class DummyAnnotater implements Annotater {
 	public static boolean isAvailable() {

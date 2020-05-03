@@ -1,7 +1,7 @@
 package ancurio.traceutil.mixin;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import ancurio.traceutil.trace.MCAnnotations;
+import ancurio.traceutil.anno.MCAnnotations;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

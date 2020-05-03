@@ -1,4 +1,4 @@
-package ancurio.traceutil.trace;
+package ancurio.traceutil.anno;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import org.lwjgl.opengl.GL;

@@ -1,4 +1,4 @@
-package ancurio.traceutil.trace;
+package ancurio.traceutil.anno;
 
 // Some basic sanity is nice
 public abstract class AbstractAnnotater implements Annotater {

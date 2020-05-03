@@ -1,6 +1,6 @@
 package ancurio.traceutil.mixin;
 
-import ancurio.traceutil.trace.MCAnnotations;
+import ancurio.traceutil.anno.MCAnnotations;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.util.math.MatrixStack;

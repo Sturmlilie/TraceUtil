@@ -1,4 +1,4 @@
-package ancurio.traceutil.trace;
+package ancurio.traceutil.anno;
 
 public interface Annotater {
 	void appendPrefix(String prefix);

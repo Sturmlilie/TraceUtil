@@ -1,6 +1,6 @@
 package ancurio.traceutil.mixin;
 
-import ancurio.traceutil.trace.MCAnnotations;
+import ancurio.traceutil.anno.MCAnnotations;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import org.spongepowered.asm.mixin.Mixin;

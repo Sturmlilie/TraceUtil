@@ -1,6 +1,6 @@
 package ancurio.traceutil.mixin;
 
-import ancurio.traceutil.trace.MCAnnotations;
+import ancurio.traceutil.anno.MCAnnotations;
 import java.util.function.Supplier;
 import net.minecraft.util.profiler.DisableableProfiler;
 import org.spongepowered.asm.mixin.Mixin;

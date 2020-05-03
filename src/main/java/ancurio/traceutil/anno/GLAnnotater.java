@@ -1,4 +1,4 @@
-package ancurio.traceutil.trace;
+package ancurio.traceutil.anno;
 
 import org.lwjgl.opengl.KHRDebug;
 import org.lwjgl.opengl.GL;

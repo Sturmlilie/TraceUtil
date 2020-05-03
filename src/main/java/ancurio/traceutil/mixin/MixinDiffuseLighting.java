@@ -1,6 +1,6 @@
 package ancurio.traceutil.mixin;
 
-import ancurio.traceutil.trace.MCAnnotations;
+import ancurio.traceutil.anno.MCAnnotations;
 import net.minecraft.client.render.DiffuseLighting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -1,8 +1,8 @@
-package ancurio.traceutil.trace;
+package ancurio.traceutil.anno;
 
 import ancurio.traceutil.Main;
-import ancurio.traceutil.trace.Annotater;
-import ancurio.traceutil.trace.DummyAnnotater;
+import ancurio.traceutil.anno.Annotater;
+import ancurio.traceutil.anno.DummyAnnotater;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.profiler.Profiler;
 
