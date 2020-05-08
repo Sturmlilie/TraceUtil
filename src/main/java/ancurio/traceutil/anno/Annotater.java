@@ -1,25 +1,8 @@
 package ancurio.traceutil.anno;
 
-import ancurio.traceutil.Main;
-import ancurio.traceutil.anno.backend.IBackend;
-import ancurio.traceutil.anno.backend.BackendDummy;
-import ancurio.traceutil.anno.backend.BackendGLKHR;
+import ancurio.traceutil.anno.backend.BackendLoader;
 
 public class Annotater {
-	private static IBackend BACKEND = new BackendDummy();
-
-	public static void loadGlBackend() {
-		if (BackendGLKHR.isAvailable()) {
-			BACKEND = new BackendGLKHR();
-		}
-
-		if (!(BACKEND instanceof BackendDummy)) {
-			Main.log(BACKEND.extensionString() + " found, starting annotations");
-		} else {
-			Main.log("No debug extensions found");
-		}
-	}
-
 	// Technically gated by GL_MAX_DEBUG_GROUP_STACK_DEPTH
 	private static final int MAX_DEPTH = 16;
 	private int currentDepth = 0;
@@ -61,7 +44,7 @@ public class Annotater {
 			throw new RuntimeException("Stack overflow");
 		}
 
-		BACKEND.pushGroup(prefix(scope));
+		BackendLoader.I.pushGroup(prefix(scope));
 	}
 
 	/**
@@ -73,7 +56,7 @@ public class Annotater {
 			throw new RuntimeException("Stack underflow");
 		}
 
-		BACKEND.popGroup();
+		BackendLoader.I.popGroup();
 	}
 
 	/**
@@ -83,7 +66,7 @@ public class Annotater {
 	 * @param message a string to be inserted
 	 */
 	public void insert(String message) {
-		BACKEND.insert(prefix(message));
+		BackendLoader.I.insert(prefix(message));
 	}
 
 	/**
@@ -109,7 +92,7 @@ public class Annotater {
 	 * @param label the string label to attach
 	 */
 	public void labelObject(int id, Annotater.ObjectType type, String label) {
-		BACKEND.objectLabel(id, type, label);
+		BackendLoader.I.objectLabel(id, type, label);
 	}
 
 	/**
