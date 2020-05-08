@@ -13,31 +13,19 @@ public class MCAnnotations {
 	public static Profiler clientProfiler;
 
 	/* Generic scope annotation spanning an entire method */
-	private Annotater methodTater = new DummyAnnotater();
+	private Annotater methodTater = new Annotater(NAMESPACE);
 	/* Scope annotation over one RenderLayer rendering */
-	private Annotater layerTater = new DummyAnnotater();
+	private Annotater layerTater = new Annotater(NAMESPACE);
 	/* Scope annotation piggybacking Minecraft's native profiler */
 	private Annotater profilerTater = new DummyAnnotater();
 
 	public static void init() {
 		INSTANCE = new MCAnnotations();
-	}
 
-	public static void initAfterGLContextValid() {
-		INSTANCE.methodTater = Annotater.chooseImpl(NAMESPACE);
-		INSTANCE.layerTater = Annotater.chooseImpl(NAMESPACE);
-//		INSTANCE.profilerTater = Annotater.chooseImpl(NAMESPACE, Annotater.ThreadAwareness.AWARE);
+//		INSTANCE.profilerTater = new Annotater(NAMESPACE);
 
 		INSTANCE.layerTater.appendPrefix("layer");
 		INSTANCE.profilerTater.appendPrefix("profiler");
-
-		String ext = Annotater.supportedImplExt();
-
-		if (!ext.isEmpty()) {
-			Main.log(ext + " found, starting annotations");
-		} else {
-			Main.log("No debug extensions found");
-		}
 	}
 
 	public static void onBegin(String scope) {

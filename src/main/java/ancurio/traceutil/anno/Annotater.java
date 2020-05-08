@@ -1,6 +1,42 @@
 package ancurio.traceutil.anno;
 
-public interface Annotater {
+import ancurio.traceutil.Main;
+import ancurio.traceutil.anno.backend.IBackend;
+import ancurio.traceutil.anno.backend.BackendDummy;
+import ancurio.traceutil.anno.backend.BackendGLKHR;
+
+public class Annotater {
+	private static IBackend BACKEND = new BackendDummy();
+
+	public static void loadGlBackend() {
+		if (BackendGLKHR.isAvailable()) {
+			BACKEND = new BackendGLKHR();
+		}
+
+		if (!(BACKEND instanceof BackendDummy)) {
+			Main.log(BACKEND.extensionString() + " found, starting annotations");
+		} else {
+			Main.log("No debug extensions found");
+		}
+	}
+
+	// Technically gated by GL_MAX_DEBUG_GROUP_STACK_DEPTH
+	private static final int MAX_DEPTH = 16;
+	private int currentDepth = 0;
+	private String fullPrefix;
+
+	private String prefix(String str) {
+		return fullPrefix + str;
+	}
+
+	/**
+	 * Create an Annotater instance
+	 * @param namespace the name of the message namespace
+	 */
+	public Annotater(String namespace) {
+		fullPrefix = namespace + ":";
+	}
+
 	/**
 	 * Optionally add a prefix to the annotations emitted by
 	 * this instance; the resulting annotations will look like this:
@@ -8,7 +44,9 @@ public interface Annotater {
 	 *
 	 * @param prefix the prefix to append after the namespace
 	 */
-	void appendPrefix(String prefix);
+	public void appendPrefix(String prefix) {
+		fullPrefix += prefix + "/";
+	}
 
 	/**
 	 * Descend one scope level deeper.
@@ -17,12 +55,26 @@ public interface Annotater {
 	 *
 	 * @param scope the name of the new nested scope
 	 */
-	void push(String scope);
+	public void push(String scope) {
+		currentDepth += 1;
+		if (currentDepth > MAX_DEPTH) {
+			throw new RuntimeException("Stack overflow");
+		}
+
+		BACKEND.pushGroup(prefix(scope));
+	}
 
 	/**
 	 * Close the currently active scope.
 	 */
-	void pop();
+	public void pop() {
+		currentDepth -= 1;
+		if (currentDepth < 0) {
+			throw new RuntimeException("Stack underflow");
+		}
+
+		BACKEND.popGroup();
+	}
 
 	/**
 	 * Insert a freeform string message into the GL stream
@@ -30,7 +82,9 @@ public interface Annotater {
 	 *
 	 * @param message a string to be inserted
 	 */
-	void insert(String message);
+	public void insert(String message) {
+		BACKEND.insert(prefix(message));
+	}
 
 	/**
 	 * Close the current active scope and open a new one.
@@ -38,9 +92,12 @@ public interface Annotater {
 	 *
 	 * @param scope the name of the new scope
 	 */
-	void swap(String scope);
+	public void swap(String scope) {
+		pop();
+		push(scope);
+	}
 
-	enum ObjectType {
+	public enum ObjectType {
 		TEXTURE
 	}
 
@@ -51,55 +108,14 @@ public interface Annotater {
 	 * @param type the type of the object
 	 * @param label the string label to attach
 	 */
-	void labelObject(int id, ObjectType type, String label);
-
-	/**
-	 * Internal method
-	 */
-	void labelObjectNoPrefix(int id, ObjectType type, String label);
-
-	enum ThreadAwareness {
-		IGNORANT,
-		AWARE
+	public void labelObject(int id, Annotater.ObjectType type, String label) {
+		BACKEND.objectLabel(id, type, label);
 	}
 
 	/**
-	 * Create an Annotater instance appropriate for the current
-	 * OpenGL context. A context _must_ be valid at call-time.
-	 * Will construct a dummy implementation when no sufficient
-	 * extension can be found.
-	 *
-	 * @param namespace the name of the message namespace
-	 * @return a valid implementation instance
+	 * Back compat
 	 */
-	static Annotater chooseImpl(String namespace) {
-		return chooseImpl(namespace, ThreadAwareness.IGNORANT);
-	}
-
-	static Annotater chooseImpl(String namespace, ThreadAwareness mode) {
-		if (GLAnnotater.isAvailable()) {
-			if (mode == ThreadAwareness.AWARE) {
-				return new ThreadAwareGLAnnotater(namespace);
-			} else {
-				return new GLAnnotater(namespace);
-			}
-		} else {
-			return new DummyAnnotater();
-		}
-	}
-
-	/**
-	 * Query the name of the OpenGL extension that would be chosen
-	 * by an appropriate Annotater implementation when calling
-	 * @chooseImpl at this point.
-	 *
-	 * @return an OpenGL extenion string
-	 */
-	static String supportedImplExt() {
-		if (GLAnnotater.isAvailable()) {
-			return GLAnnotater.extensionString();
-		} else {
-			return "";
-		}
+	public static Annotater chooseImpl(String namespace) {
+		return new Annotater(namespace);
 	}
 }

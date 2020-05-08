@@ -1,31 +1,29 @@
 package ancurio.traceutil.anno;
 
-public class DummyAnnotater implements Annotater {
-	public static boolean isAvailable() {
-		return true;
-	}
+import ancurio.traceutil.anno.Annotater;
 
+public class DummyAnnotater extends Annotater {
 	public DummyAnnotater() {
+		super("");
 	}
 
-	public void appendPrefix(String prefix) {
-	}
-
+	@Override
 	public void push(String scope) {
 	}
 
+	@Override
 	public void pop() {
 	}
 
-	public void swap(String scope) {
-	}
-
+	@Override
 	public void insert(String message) {
 	}
 
-	public void labelObject(int id, ObjectType type, String label) {
+	@Override
+	public void swap(String scope) {
 	}
 
-	public void labelObjectNoPrefix(int id, ObjectType type, String label) {
+	@Override
+	public void labelObject(int id, Annotater.ObjectType type, String label) {
 	}
 }

@@ -1,5 +1,6 @@
 package ancurio.traceutil.mixin;
 
+import ancurio.traceutil.Main;
 import ancurio.traceutil.anno.MCAnnotations;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.profiler.DisableableProfiler;
@@ -18,6 +19,6 @@ public class MixinMinecraftClient {
 	private void onClientInitialized(CallbackInfo info) {
 		MCAnnotations.clientProfiler = profiler;
 		// Any point where a GL context is already created (but before acutal rendering) is fine
-		MCAnnotations.initAfterGLContextValid();
+		Main.onGlContextValid();
 	}
 }

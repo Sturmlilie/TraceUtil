@@ -1,5 +1,6 @@
 package ancurio.traceutil;
 
+import ancurio.traceutil.anno.Annotater;
 import ancurio.traceutil.anno.MCAnnotations;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
@@ -17,5 +18,9 @@ public class Main implements ModInitializer {
 	public void onInitialize() {
 		MCAnnotations.init();
 		log("Initialized");
+	}
+
+	public static void onGlContextValid() {
+		Annotater.loadGlBackend();
 	}
 }
