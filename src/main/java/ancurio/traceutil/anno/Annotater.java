@@ -40,6 +40,24 @@ public interface Annotater {
 	 */
 	void swap(String scope);
 
+	enum ObjectType {
+		TEXTURE
+	}
+
+	/**
+	 * Attach a namespaced string label to an OpenGL object.
+	 *
+	 * @param id the OpenGL integer id of the object
+	 * @param type the type of the object
+	 * @param label the string label to attach
+	 */
+	void labelObject(int id, ObjectType type, String label);
+
+	/**
+	 * Internal method
+	 */
+	void labelObjectNoPrefix(int id, ObjectType type, String label);
+
 	enum ThreadAwareness {
 		IGNORANT,
 		AWARE
