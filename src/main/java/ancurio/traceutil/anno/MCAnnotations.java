@@ -3,7 +3,10 @@ package ancurio.traceutil.anno;
 import ancurio.traceutil.Main;
 import ancurio.traceutil.anno.Annotater;
 import ancurio.traceutil.anno.DummyAnnotater;
+import ancurio.traceutil.anno.backend.BackendLoader;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.texture.AbstractTexture;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
 
 public class MCAnnotations {
@@ -54,5 +57,9 @@ public class MCAnnotations {
 
 	public static void onProfilerSwap(String location) {
 		INSTANCE.profilerTater.swap(location);
+	}
+
+	public static void onTextureRegistered(final Identifier id, final AbstractTexture texture) {
+		BackendLoader.I.objectLabel(texture.getGlId(), Annotater.ObjectType.TEXTURE, id.toString());
 	}
 }
