@@ -6,19 +6,21 @@ Setting up apitrace with MultiMC: [Tutorial](https://gist.github.com/Sturmlilie/
 TraceUtil contains common annotation for OpenGL-intensive methods in Minecraft 1.15.2 which are automatically inserted via mixin-hooks, including:  
 `DiffuseLighting`, `DrawableHelper`, `GameRenderer`, `ItemRenderer`, `ModelLoader`, `Screen`, `SpriteAtlasTexture`, `TextureManager`, `WorldRenderer`
 Also contains a special annotater for `RenderLayer` instances, and an optional annotater which hooks into Minecrafts own Profiler (off by default).
+Each texture registered with `TextureManager` will have the assosicated `Identifier` attached on the GL level so it shows up under *Surfaces*.
 
 **Without TraceUtil:**  
 ![without_traceutil](https://imgur.com/0ctOB9K.png)
 
 **With TraceUtil:**  
 ![with_traceutil](https://imgur.com/4pxNePM.png)
+![with_traceutil2](https://imgur.com/KunuSHz.png)
 ## As a library
 Insert your own structuring annotations. Sample:
 ```java
 /* imports ... */
 import net.ancurio.traceutil.anno.Annotater;
 /* constructors ... */
-Annotater tater = Annotater.chooseImpl("tis3d");
+Annotater tater = new Annotater("tis3d");
 tater.appendPrefix("serialport");
 /* render methods ... */
 tater.push("SerialPortModule.render");
