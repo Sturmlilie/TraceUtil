@@ -18,7 +18,7 @@ Each texture registered with `TextureManager` will have the assosicated `Identif
 Insert your own structuring annotations. Sample:
 ```java
 /* imports ... */
-import net.ancurio.traceutil.anno.Annotater;
+import ancurio.traceutil.anno.Annotater;
 /* constructors ... */
 Annotater tater = new Annotater("tis3d");
 tater.appendPrefix("serialport");
