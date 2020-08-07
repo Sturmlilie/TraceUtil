@@ -29,12 +29,12 @@ public class MixinDiffuseLighting {
 		MCAnnotations.onGenericEnd();
 	}
 
-	@Inject(at = @At("HEAD"), method = "enableForLevel(Lnet/minecraft/client/util/math/Matrix4f;)V")
+	@Inject(at = @At("HEAD"), method = "enableForLevel(Lnet/minecraft/util/math/Matrix4f;)V")
 	private static void enableForLevelBegin(CallbackInfo info) {
 		MCAnnotations.onBegin("DiffuseLighting.enableForLevel");
 	}
 
-	@Inject(at = @At("RETURN"), method = "enableForLevel(Lnet/minecraft/client/util/math/Matrix4f;)V")
+	@Inject(at = @At("RETURN"), method = "enableForLevel(Lnet/minecraft/util/math/Matrix4f;)V")
 	private static void enableForLevelEnd(CallbackInfo info) {
 		MCAnnotations.onGenericEnd();
 	}

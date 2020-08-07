@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Screen.class)
 public class MixinScreen {
-	@Inject(at = @At("HEAD"), method = "render(IIF)V")
+	@Inject(at = @At("HEAD"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;IIF)V")
 	private void renderBegin(CallbackInfo info) {
 		MCAnnotations.onBegin("Screen.render");
 	}
 
-	@Inject(at = @At("RETURN"), method = "render(IIF)V")
+	@Inject(at = @At("RETURN"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;IIF)V")
 	private void renderEnd(CallbackInfo info) {
 		MCAnnotations.onGenericEnd();
 	}

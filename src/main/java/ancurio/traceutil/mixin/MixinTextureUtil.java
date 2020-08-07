@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TextureUtil.class)
 public class MixinTextureUtil {
-	@Inject(at = @At("HEAD"), method = "prepareImage(Lnet/minecraft/client/texture/NativeImage$GLFormat;IIII)V")
+	@Inject(at = @At("HEAD"), method = "allocate(Lnet/minecraft/client/texture/NativeImage$GLFormat;IIII)V")
 	private static void prepareImageBegin(CallbackInfo info) {
-		MCAnnotations.onBegin("TextureUtil.prepareImage");
+		MCAnnotations.onBegin("TextureUtil.allocate");
 	}
 
-	@Inject(at = @At("RETURN"), method = "prepareImage(Lnet/minecraft/client/texture/NativeImage$GLFormat;IIII)V")
+	@Inject(at = @At("RETURN"), method = "allocate(Lnet/minecraft/client/texture/NativeImage$GLFormat;IIII)V")
 	private static void drawEnd(CallbackInfo info) {
 		MCAnnotations.onGenericEnd();
 	}

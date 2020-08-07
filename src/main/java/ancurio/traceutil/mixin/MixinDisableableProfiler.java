@@ -2,13 +2,13 @@ package ancurio.traceutil.mixin;
 
 import ancurio.traceutil.anno.MCAnnotations;
 import java.util.function.Supplier;
-import net.minecraft.util.profiler.DisableableProfiler;
+import net.minecraft.util.profiler.DummyProfiler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(DisableableProfiler.class)
+@Mixin(DummyProfiler.class)
 public class MixinDisableableProfiler {
 	@Inject(at = @At("HEAD"), method = "push(Ljava/lang/String;)V")
 	private void push(String location, CallbackInfo info) {
