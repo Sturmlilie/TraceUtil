@@ -2,11 +2,11 @@ package ancurio.traceutil;
 
 import ancurio.traceutil.anno.MCAnnotations;
 import ancurio.traceutil.anno.backend.BackendLoader;
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.ClientModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Main implements ModInitializer {
+public class Main implements ClientModInitializer {
 	public static final String MODID = "traceutil";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 
@@ -15,7 +15,7 @@ public class Main implements ModInitializer {
 	}
 
 	@Override
-	public void onInitialize() {
+	public void onInitializeClient() {
 		MCAnnotations.init();
 		log("Initialized");
 	}
