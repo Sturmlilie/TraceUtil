@@ -16,28 +16,28 @@ public class MixinDisableableProfiler {
 			MCAnnotations.onProfilerPush(location);
 		}
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "push(Ljava/util/function/Supplier;)V")
 	private void push(Supplier<String> supplier, CallbackInfo info) {
 		if (this == MCAnnotations.clientProfiler) {
 			MCAnnotations.onProfilerPush((String) supplier.get());
 		}
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "pop()V")
 	private void pop(CallbackInfo info) {
 		if (this == MCAnnotations.clientProfiler) {
 			MCAnnotations.onProfilerPop();
 		}
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "swap(Ljava/lang/String;)V")
 	private void pop(String location, CallbackInfo info) {
 		if (this == MCAnnotations.clientProfiler) {
 			MCAnnotations.onProfilerSwap(location);
 		}
 	}
-	
+
 	@Inject(at = @At("HEAD"), method = "swap(Ljava/util/function/Supplier;)V")
 	private void pop(Supplier<String> supplier, CallbackInfo info) {
 		if (this == MCAnnotations.clientProfiler) {
