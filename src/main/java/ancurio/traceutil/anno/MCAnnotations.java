@@ -8,6 +8,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.AbstractTexture;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
+import org.lwjgl.opengl.GL11;
 
 public class MCAnnotations {
 	private static MCAnnotations INSTANCE;
@@ -60,6 +61,13 @@ public class MCAnnotations {
 	}
 
 	public static void onTextureRegistered(final Identifier id, final AbstractTexture texture) {
-		BackendLoader.I.objectLabel(texture.getGlId(), Annotater.ObjectType.TEXTURE, id.toString());
+		// Apparently the texture needs to be bound first before it can be labeled?
+		int glId = texture.getGlId();
+		int previousId = GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, glId);
+
+		BackendLoader.I.objectLabel(glId, Annotater.ObjectType.TEXTURE, id.toString());
+
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, previousId);
 	}
 }
