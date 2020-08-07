@@ -22,7 +22,8 @@
     "MixinScreen",
     "MixinItemRenderer",
     "MixinGlStateManager",
-    "MixinDisableableProfiler"
+    "MixinDisableableProfiler",
+    "MixinWindow"
   ],
   "injectors": {
     "defaultRequire": 1
